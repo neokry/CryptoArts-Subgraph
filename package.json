@@ -1,13 +1,13 @@
 {
-  "name": "cryptoarts",
+  "name": "crypto-arts",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ patrickgenevich/cryptoarts",
-    "create-local": "graph create --node http://localhost:8020/ patrickgenevich/cryptoarts",
-    "remove-local": "graph remove --node http://localhost:8020/ patrickgenevich/cryptoarts",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 patrickgenevich/cryptoarts"
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ patrickgenevich/crypto-arts",
+    "create-local": "graph create --node http://localhost:8020/ patrickgenevich/crypto-arts",
+    "remove-local": "graph remove --node http://localhost:8020/ patrickgenevich/crypto-arts",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 patrickgenevich/crypto-arts"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.19.0",
