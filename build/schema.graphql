@@ -4,7 +4,7 @@ type Artwork @entity {
   owner: Bytes!
   currentPrice: BigInt!
   soldPriceHistory: [BigInt!]
-  name: String
-  description: String
-  image: String
+  name: String!
+  description: String!
+  image: String!
 }

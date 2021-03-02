@@ -82,6 +82,10 @@ export class ArtworkCreated__Params {
   get artist(): Address {
     return this._event.parameters[1].value.toAddress();
   }
+
+  get price(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
 }
 
 export class ArtworkPriceSet extends ethereum.Event {
@@ -266,6 +270,25 @@ export class Contract extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  getPrice(_artworkId: BigInt): BigInt {
+    let result = super.call("getPrice", "getPrice(uint256):(uint256)", [
+      ethereum.Value.fromUnsignedBigInt(_artworkId)
+    ]);
+
+    return result[0].toBigInt();
+  }
+
+  try_getPrice(_artworkId: BigInt): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("getPrice", "getPrice(uint256):(uint256)", [
+      ethereum.Value.fromUnsignedBigInt(_artworkId)
+    ]);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   isApprovedForAll(owner: Address, operator: Address): boolean {

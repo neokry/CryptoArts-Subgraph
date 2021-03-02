@@ -89,54 +89,30 @@ export class Artwork extends Entity {
     }
   }
 
-  get name(): string | null {
+  get name(): string {
     let value = this.get("name");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
+    return value.toString();
   }
 
-  set name(value: string | null) {
-    if (value === null) {
-      this.unset("name");
-    } else {
-      this.set("name", Value.fromString(value as string));
-    }
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
   }
 
-  get description(): string | null {
+  get description(): string {
     let value = this.get("description");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
+    return value.toString();
   }
 
-  set description(value: string | null) {
-    if (value === null) {
-      this.unset("description");
-    } else {
-      this.set("description", Value.fromString(value as string));
-    }
+  set description(value: string) {
+    this.set("description", Value.fromString(value));
   }
 
-  get image(): string | null {
+  get image(): string {
     let value = this.get("image");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
+    return value.toString();
   }
 
-  set image(value: string | null) {
-    if (value === null) {
-      this.unset("image");
-    } else {
-      this.set("image", Value.fromString(value as string));
-    }
+  set image(value: string) {
+    this.set("image", Value.fromString(value));
   }
 }

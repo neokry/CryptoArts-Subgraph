@@ -47,18 +47,13 @@ export function handleApprovalForAll(event: ApprovalForAll): void {}
 
 export function handleArtworkCreated(event: ArtworkCreated): void {
   let id = event.params.artworkId.toHex();
-  let artwork = Artwork.load(id);
-
-  if (artwork == null) {
-    artwork = new Artwork(id);
-  }
+  let artwork = new Artwork(id);
 
   artwork.owner = event.params.artist;
   artwork.artist = event.params.artist;
+  artwork.currentPrice = event.params.price;
 
   let contract = Contract.bind(event.address);
-  artwork.currentPrice = contract.artworkToCurrentPrice(event.params.artworkId);
-
   let tokenURI = contract.tokenURI(event.params.artworkId);
   log.info("Token uri {}", [tokenURI]);
 
@@ -78,22 +73,29 @@ export function handleArtworkCreated(event: ArtworkCreated): void {
 }
 
 export function handleArtworkSold(event: ArtworkSold): void {
-  /*
   let id = event.params.artworkId.toHex();
-  let artwork = Artwork.load(id);
+  let artwork = new Artwork(id);
+
   artwork.owner = event.params.newOwner;
-  artwork.soldPriceHistory.push(event.params.price);
+
+  if (artwork.soldPriceHistory == null) {
+    artwork.soldPriceHistory = [event.params.price];
+  } else {
+    artwork.soldPriceHistory.push(event.params.price);
+  }
+
+  artwork.currentPrice = BigInt.fromI32(0);
+
   artwork.save();
-  */
 }
 
 export function handleArtworkPriceSet(event: ArtworkPriceSet): void {
-  /*
   let id = event.params.artworkId.toHex();
-  let artwork = Artwork.load(id);
+  let artwork = new Artwork(id);
+
   artwork.currentPrice = event.params.price;
+
   artwork.save();
-  */
 }
 
 export function handleTransfer(event: Transfer): void {}
